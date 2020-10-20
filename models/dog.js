@@ -1,6 +1,5 @@
 'use strict';
-
-const Enum = require('./../constants');
+const Enum = require('./../utils/constants');
 
 const {
   Model
@@ -10,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       //OneToMany
       Dog.hasMany(models.Product, { as: 'dogs', foreignKey: 'dogId' });
+
     }
   };
   Dog.init({
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     provincePlace: {
       type: DataTypes.STRING(16),
     },
-    active: {
+    isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: 1
     }

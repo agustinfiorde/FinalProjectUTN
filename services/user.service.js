@@ -1,28 +1,35 @@
 const { User, Dog } = require('./../models/index');
+const { sequelize } = require('../utils/constants');
 
-exports.getAll = () => User.findAll({ where: { "active": true } });
+exports.getAll = () => User.findAll({
+    where: { isActive: true },
+    attributes: {
+        exclude: sequelize.attributesToExcludeUser
+    }
+});
 
-exports.getAllUsersAndDogs = () => User.findAll({
+exports.getAllUsersAndDogsRegistered = () => User.findAll({
     where: { active: true },
     attributes: {
-        exclude: ['createdAt', 'updatedAt']
+        exclude: sequelize.attributesToExcludeUser
     },
     include: {
         model: Dog,
-        where: { active: true },
+        as: 'managers',
+        where: { isActive: true },
         attributes: {
-            exclude: ['createdAt', 'updatedAt']
+            exclude: sequelize.attributesToExcludeDog
         },
     }
 });
 
-exports.findById = (id) => User.findAll({ where: { "id": id, "active": true } });
+exports.findById = (id) => User.findOne({ where: { id: id } });
 
 exports.save = (obj) => User.create(obj);
 
-exports.update = (id, obj) => User.update(obj, { where: { "id": id, "active": true } });
+exports.update = (id, obj) => User.update(obj, { where: { id } });
 
 exports.deleteMethod = (id, obj) => {
     obj.active = false;
-    return User.update(obj, { where: { "id": id, "active": true } });
+    return User.update(obj, { where: { "id": id, isActive: true } });
 };

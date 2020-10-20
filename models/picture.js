@@ -24,7 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     directory: DataTypes.STRING,
-    active: DataTypes.BOOLEAN,
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: 1
+    }
 
   }, {
     sequelize,

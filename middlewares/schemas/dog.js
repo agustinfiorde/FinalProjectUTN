@@ -12,7 +12,7 @@ exports.schemasDog = {
         country: schemas.schemaCountry,
         province: schemas.schemaProvince,
         provincePlace: schemas.schemaProvincePlace,
-        userId: schemas.schemaUser,
+        registeredBy: schemas.schemaUser,
     }),
 
     modify: Joi.object().keys({

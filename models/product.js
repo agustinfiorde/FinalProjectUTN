@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
   class Product extends Model {
     static associate(models) {
-      
+
     }
   };
   Product.init({
@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     price: DataTypes.DOUBLE,
     status: DataTypes.BOOLEAN,
-    active: DataTypes.BOOLEAN
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: 1
+    }
   }, {
     sequelize,
     modelName: 'Product',

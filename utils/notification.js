@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const send = async (to, token, id, emailType) => {
+const send = async (to, token, id, typeOfEmail) => {
     try {
         const transporter = nodemailer.createTransport({
             service: process.env.CORREO_SERVICE,
@@ -12,49 +12,39 @@ const send = async (to, token, id, emailType) => {
             },
         });
 
-        switch (emailType) {
-            case "register":
-                const mail = {
-                    from: "PerroMania",
-                    to,
-                    subject: mails.register.subject,
-                    html: mails.register.html,
-                };
-                break;
-            case "recover":
-                const mail = {
-                    from: "PerroMania",
-                    to,
-                    subject: mails.recover.subject,
-                    html: mails.recover.html,
-                };
-                break;
-            default:
-                break;
-        }
-
+        const mail = createMail(typeOfEmail, token, id, to);
 
         const { messageId } = await transporter.sendMail(mail);
         return messageId;
     } catch (e) {
-        console.log(e);
+        throw e;
     }
 }
 
-const mails = {
-    register: {
-        subject: "Bienvenido a Perromania",
-        html: `<a href:"http://127.0.0.1:3000/user/confirm?token=${token}&id=${id}" target="_blank">
-        http://localhost:3000/user/confirm?token=${token}&id=${id}
-        </a>`,
-    },
-    recoverPassword: {
-        subject: "Recuperacion de clave - Perromania",
-        html: `<a href:"http://127.0.0.1:3000/user/confirm?token=${token}&id=${id}" target="_blank">
-        http://localhost:3000/user/confirm?token=${token}&id=${id}
-        </a>`,
-    },
-    notification: {}
-}
+const createMail = (typeOfEmail, token, id, to) => {
+
+    switch (typeOfEmail) {
+        case "register":
+            return {
+                from: "PerroMania",
+                to,
+                subject: "Bienvenido",
+                html: `<a href:"http://127.0.0.1:3000/user/confirm?token=${token}&id=${id}" target="_blank">
+                        http://localhost:3000/user/confirm?token=${token}&id=${id}
+                        </a>`,
+            };
+        case "recover":
+            return {
+                from: "PerroMania",
+                to,
+                subject: "Recuperar Contraseña",
+                html: `<a href:"http://127.0.0.1:3000/user/confirm?token=${token}&id=${id}" target="_blank">
+                            http://localhost:3000/user/confirm?token=${token}&id=${id}
+                            </a>`,
+            };
+        default:
+            return null;
+    }
+};
 
 module.exports = { send };

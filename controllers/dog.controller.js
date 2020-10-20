@@ -11,9 +11,10 @@ const obj = {
     country: String,
     province: String,
     provindePlace: String,
-    active: Boolean,
+    isActive: Boolean,
     createdAt: Date,
     updatedAt: Date,
+    registeredBy: String,
     userId: String
 };
 
