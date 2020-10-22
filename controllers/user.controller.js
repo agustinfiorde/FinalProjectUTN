@@ -84,7 +84,7 @@ exports.confirmEmail = async (req, res) => {
     const token = req.query.token;
     const id = req.query.id;
     try {
-        const { uuidEmail } = verifyToken(token, { uuidEmail });
+        const { uuidEmail } = verifyToken(token);
         const obj = await UserService.findById(id);
 
         if (!obj) {
