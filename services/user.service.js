@@ -23,7 +23,7 @@ exports.getAllUsersAndDogsRegistered = () => User.findAll({
     }
 });
 
-exports.findById = (id) => User.findOne({ where: { id: id } });
+exports.findById = (id) => User.findByPk(id);
 
 exports.save = (obj) => User.create(obj);
 

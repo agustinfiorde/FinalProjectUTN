@@ -7,8 +7,9 @@ const signOptions = { algorithm: "RS256", expiresIn: "1h" };
 
 const createToken = (payload) => jwt.sign(payload, privateKey, signOptions);
 
-const verifyToken = (token) => {
-    return { uuidEmail } = jwt.verify(token, publicKey);
+const verifyToken = (token, obj) => {
+    const vals = [];
+    return { vals } = jwt.verify(token, publicKey);
 }
 
 module.exports = { createToken, verifyToken };
