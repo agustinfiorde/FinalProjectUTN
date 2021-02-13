@@ -18,12 +18,17 @@ exports.schemasUser = {
     }),
 
     modify: Joi.object().keys({
+        id: schemas.schemaId,
         name: schemas.schemaString,
         lastName: schemas.schemaString,
-        email: schemas.schemaEmail,
         dni: schemas.schemaDni,
-        dateBorn: schemas.schemaDate,
-        password: schemas.schemaPassword,
+        dateOfBirth: schemas.schemaDate,
         rol: schemas.schemaRol,
+        email: schemas.schemaEmail,
+        password: schemas.schemaPassword,
+        gender: schemas.schemaGender,
+        country: schemas.schemaCountry,
+        province: schemas.schemaProvince,
+        provincePlace: schemas.schemaProvincePlace,
     })
 }

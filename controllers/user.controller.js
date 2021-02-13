@@ -72,9 +72,13 @@ exports.deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
         const obj = req.body;
-        obj.active = false;
-        const result = await UserService.deleteMethod(id, obj);
-        res.json(result);
+
+        if (id == obj.id) {
+            const result = await UserService.deleteMethod(id, obj);
+            res.json(result);
+        } else {
+            res.status(500).json({ message: "Los id no coinciden" });
+        }
     } catch (e) {
         res.status(500).json(e);
     }
@@ -111,10 +115,11 @@ exports.confirmEmail = async (req, res) => {
 
 const { imgFile } = require('../utils/fileHandler');
 
-exports.test = (req, res) => {
+exports.test = async (req, res) => {
+    try {
 
-    const uuid = imgFile(req.file);
-
-    res.json({ test: uuid });
-
-}
+        res.json({ message: "No coinciden el uidCorreo con el de la URL" });
+    } catch (e) {
+        res.status(500).json(e);
+    }
+};

@@ -30,6 +30,6 @@ exports.save = (obj) => User.create(obj);
 exports.update = (id, obj) => User.update(obj, { where: { id } });
 
 exports.deleteMethod = (id, obj) => {
-    obj.active = false;
+    obj["isActive"] = false;
     return User.update(obj, { where: { "id": id, isActive: true } });
 };

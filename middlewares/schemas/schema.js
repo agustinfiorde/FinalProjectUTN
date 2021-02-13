@@ -36,6 +36,7 @@ const messageGender = {
 };
 
 const schemas = {
+    schemaId: Joi.string().min(35).max(36).required().messages({ "any.string": "Para la edicion el id es obligatorio" }),
     schemaString: Joi.string().min(2).max(30).required().messages({ messageString }),
     schemaEmail: Joi.string().min(2).max(30).required().messages({ messageString }),
     schemaDni: Joi.string().min(8).max(8).required().messages({ messageDni }),

@@ -3,12 +3,14 @@ const allowPDFExtension = ["pdf"];
 
 const fs = require('fs');
 const { v4: uuid } = require('uuid');
+const ObjectID = require("bson-objectid");
 
 const saveFile = ({ mimetype, path, size }, allowExtension, destFolder = "./public/img") => {
     try {
         const extension = mimetype.split("/")[1];
         if (allowExtension.includes(extension)) {
-            const id = uuid();
+            // const id = uuid();
+            const id = ObjectID();
             const fileName = `${id}.${extension}`;
             const fileNameOut = `${destFolder}/${fileName}`;
             fs.createReadStream(path).pipe(fs.createWriteStream(fileNameOut));

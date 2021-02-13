@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const { secured } = require("../middlewares/auth.middleware");
-
 const userRouter = require('./user');
 const dogRouter = require('./dog');
 const socialRouter = require('./social');

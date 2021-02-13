@@ -2,16 +2,12 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/user.controller');
 const { validateCreate, validateUpdate } = require('./../middlewares/user.middleware');
-const { upload } = require("../utils/multer");
+// const { upload } = require("../utils/multer");
 
-router.get('/', UserController.getAll);
-// router.get('/dogs', UserController.getAllUsersAndDogsRegistered);
-// router.get('/:id', UserController.getOne);
-router.post('/', validateCreate, UserController.createUser);
+router.get('/', UserController.getAll);//ok
+router.post('/', validateCreate, UserController.createUser);//ok
 router.get('/confirm', UserController.confirmEmail);
-router.put('/:id', validateUpdate, UserController.updateUser);
-router.delete('/:id', UserController.deleteUser);
-
-router.get('/test', upload.single("picture"), UserController.test);
+router.put('/:id', validateUpdate, UserController.updateUser);//ok
+router.delete('/:id', UserController.deleteUser);//ok
 
 module.exports = router;
