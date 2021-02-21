@@ -27,7 +27,6 @@ const auth = (req, res) => {
             res.status(401).json({ message: "Confirmá tu cuenta par seguir :O 🎤" });
 
         const token = createToken({ id: result.id });
-        console.log(token);
         res.json({ JWT: token, info: { completeName: result.name + " " + result.lastName, rol: result.rol } });
 
     } catch (e) {

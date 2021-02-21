@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/user.controller');
 const { validateCreate, validateUpdate } = require('./../middlewares/user.middleware');
-// const { upload } = require("../utils/multer");
+const { upload } = require("../utils/multer");
 
 router.get('/', UserController.getAll);//ok
 router.post('/', validateCreate, UserController.createUser);//ok

@@ -27,8 +27,9 @@ exports.getAll = (req, res) =>
 exports.getOne = async (req, res) => {
     try {
         const { id } = req.params;
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  " + id)
         const result = await DogService.findById(id);
-        res.json(result);
+        res.json({ dog: result });
     } catch (e) {
         res.status(500).json(e);
     }

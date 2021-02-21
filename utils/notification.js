@@ -29,8 +29,8 @@ const createMail = (typeOfEmail, token, id, to) => {
                 from: "PerroMania",
                 to,
                 subject: "Bienvenido",
-                html: `<a href:"http://127.0.0.1:3000/user/confirm?token=${token}&id=${id}" target="_blank">
-                        http://localhost:3000/user/confirm?token=${token}&id=${id}
+                html: `<a href:"http://127.0.0.1:3000/api/user/confirm?token=${token}&id=${id}" target="_blank">
+                        http://localhost:3000/api/user/confirm?token=${token}&id=${id}
                         </a>`,
             };
         case "recover":

@@ -48,7 +48,7 @@ exports.createUser = async (req, res) => {
         obj.password = sha1(obj.password);
         const resp = await UserService.save(obj);
         const token = createToken({ uuidEmail: resp.uuidEmail });
-        const respEmail = await send(obj.email, token, obj.id, "register");
+        const respEmail = await send(obj.email, token, resp.id, "register");
         res.status(200).json({ resp, token, respEmail })
     } catch (error) {
         res.status(500).json(error);
@@ -106,7 +106,6 @@ exports.confirmEmail = async (req, res) => {
             res.json({ message: "No coinciden el uidCorreo con el de la URL" });
         }
     } catch (e) {
-        console.log(e);
         res.status(500).json(e);
     }
 }

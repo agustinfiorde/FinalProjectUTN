@@ -19,7 +19,7 @@ exports.save = async (obj) => {
 
 exports.getAll = () => Dog.findAll();
 
-exports.findById = (id) => Dog.findAll({ where: { "id": id } });
+exports.findById = (id) => Dog.findOne({ where: { "id": id } });
 
 exports.update = (id, obj) => Dog.update(obj, { where: { "id": id } });
 

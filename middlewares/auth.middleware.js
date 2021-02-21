@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 
 const secured = (req, res, next) => {
     try {
-        let { authorization } = req.headers;
-        const { id } = jwt.verify(authorization, publicKey);
+        let { auth } = req.headers;
+
+        const { id } = jwt.verify(auth, publicKey);
         req.id = id;
         next();
     } catch (e) {
-        console.log(e);
         res.sendStatus(401);
     }
 }
